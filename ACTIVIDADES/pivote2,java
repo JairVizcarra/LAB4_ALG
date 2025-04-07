@@ -1,0 +1,26 @@
+void pivote2(int[] array, int median, int start, int end, int[] izq, int[] der) {
+    int i = start;
+    int j = end;
+    int k = start;
+    int[] temp = new int[end - start + 1];
+
+    for (int m = start; m <= end; m++) {
+        if (array[m] < median) temp[k++] = array[m];
+    }
+    izq[0] = start;
+    int leftEnd = k;
+
+    for (int m = start; m <= end; m++) {
+        if (array[m] == median) temp[k++] = array[m];
+    }
+    der[0] = k;
+    
+    for (int m = start; m <= end; m++) {
+        if (array[m] > median) temp[k++] = array[m];
+    }
+
+    // Copiar de vuelta al arreglo original
+    for (int m = 0; m < temp.length; m++) {
+        array[start + m] = temp[m];
+    }
+}
